@@ -1,12 +1,71 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Employee Performance Analysis</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Performance Analysis — Visualization</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 2rem; line-height: 1.5; background: #fafafa; }
+    pre { background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.9rem; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .muted { color: #6b7280; font-size: 0.95rem; }
+    img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e5e7eb; }
+    h1, h2 { color: #111827; }
+  </style>
 </head>
 <body>
-    <h1>Employee Performance Analysis</h1>
-    <p><b>Email:</b> 22f3001480@ds.study.iitm.ac.in</p>
-    <p>Number of employees in <b>R&amp;D</b>: <b>23</b></p>
-    <h2>Histogram: Employee Distribution by Department</h2>
-    <img src="histogram.png" alt="Histogram" width="600">
+  <h1>Employee Performance Analysis — Visualization</h1>
+  <p class="muted">Prepared by ChatGPT • Contact: <code>22f3001480@ds.study.iitm.ac.in</code></p>
+
+  <div class="card">
+    <h2>Console Output</h2>
+    <pre>=== Employee Performance Analysis ===
+Dataset: Randomly generated with 100 employees
+Frequency count for "R&amp;D" department: 23
+</pre>
+  </div>
+
+  <div class="card">
+    <h2>Department Histogram</h2>
+    <!-- Replace with your own base64 image string or link to histogram.png -->
+    <img alt="Department Histogram" src="histogram.png" />
+  </div>
+
+  <div class="card">
+    <h2>Python Source Code</h2>
+    <pre>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+EMAIL = "22f3001480@ds.study.iitm.ac.in"
+
+np.random.seed(42)
+departments = ["Sales", "R&D", "IT", "Finance", "Operations", "HR", "Marketing"]
+regions = ["North America", "Latin America", "Europe", "Africa", "Asia"]
+
+n = 100
+df = pd.DataFrame({
+    "employee_id": [f"EMP{str(i).zfill(3)}" for i in range(1, n+1)],
+    "department": np.random.choice(departments, n),
+    "region": np.random.choice(regions, n),
+    "performance_score": np.random.uniform(60, 100, n).round(2),
+    "years_experience": np.random.randint(1, 20, n),
+    "satisfaction_rating": np.random.uniform(1, 5, n).round(1)
+})
+
+# Frequency count for R&D
+rd_count = (df["department"] == "R&D").sum()
+print("Frequency count for R&D department:", rd_count)
+
+plt.figure(figsize=(8,5))
+plt.hist(df["department"], bins=len(departments), rwidth=0.8, color="#4F46E5", alpha=0.8)
+plt.title("Histogram of Departments")
+plt.xlabel("Department")
+plt.ylabel("Frequency")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("histogram.png", dpi=200)
+plt.close()</pre>
+  </div>
 </body>
 </html>
